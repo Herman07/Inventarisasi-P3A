@@ -4,9 +4,9 @@ import (
 	"fmt"
 	"github.com/labstack/echo/v4"
 	"net/http"
-	"skeleton-echo/models"
-	"skeleton-echo/request"
-	"skeleton-echo/services"
+	"Inventarisasi-P3A/models"
+	"Inventarisasi-P3A/request"
+	"Inventarisasi-P3A/services"
 	"strconv"
 )
 
@@ -31,14 +31,6 @@ func (c *ProvDataController) Index(ctx echo.Context) error {
 		"link": "/inventaris/v1/master-data",
 	}
 	return Render(ctx, "Home", "master-data/provinsi/index", c.Menu, append(c.BreadCrumbs, breadCrumbs),nil)
-}
-
-func (c *ProvDataController) Store(ctx echo.Context) error {
-	breadCrumbs := map[string]interface{}{
-		"menu": "Home",
-		"link": "/inventaris/v1/master-data/add",
-	}
-	return Render(ctx, "Home", "master-data/provinsi/add", c.Menu, append(c.BreadCrumbs, breadCrumbs), nil)
 }
 func (c *ProvDataController) Update(ctx echo.Context) error {
 	id := ctx.Param("id")
@@ -77,8 +69,8 @@ func (c *ProvDataController) GetDetail(ctx echo.Context) error {
 	var action string
 	listOfData := make([]map[string]interface{}, len(data))
 	for k, v := range data {
-		action = `<a data-toggle="modal" data-target="#modal-update" class="btn btn-success btn-bold btn-upper" style="text-decoration: none;font-weight: 100;color: white;/* width: 80px; */"><i class="fas fa-edit"></i></a>
-		<a href="javascript:;" onclick="Delete('` + v.ID + `')" class="btn btn-danger btn-bold btn-upper" title="Delete" style="text-decoration: none;font-weight: 100;color: white;/* width: 80px; */"><i class="fas fa-trash"></i></a>`
+		action = `<a href="/admin/v1/master-data/provinsi/update/` + (v.ID) + `" class="btn btn-success" style="text-decoration: none;font-weight: 100;color: white;/* width: 80px; */"><i class="fa fa-edit"></i></a>
+		<a onclick="Deleted('` + v.ID + `')" class="btn btn-danger" title="Delete" style="text-decoration: none;font-weight: 100;color: white;/* width: 80px; */"><i class="fa fa-trash"></i></a>`
 		//time := v.CreatedAt
 		//createdAt = time.Format("2006-01-02")
 		listOfData[k] = map[string]interface{}{
@@ -107,12 +99,12 @@ func (c *ProvDataController) AddData(ctx echo.Context) error {
 	if err != nil {
 		return c.InternalServerError(ctx, err)
 	}
-	return ctx.Redirect(302, "/inventaris/v1/master-data/provinsi")
+	return ctx.Redirect(302, "/admin/v1/master-data/provinsi")
 }
 
 func (c *ProvDataController) DoUpdate(ctx echo.Context) error {
 	var entity request.ProvinsiReq
-	id := ctx.Param("id_prov")
+	id := ctx.Param("id")
 	if err := ctx.Bind(&entity); err != nil {
 		return ctx.JSON(400, echo.Map{"message": "error binding data"})
 	}
@@ -121,7 +113,7 @@ func (c *ProvDataController) DoUpdate(ctx echo.Context) error {
 		return c.InternalServerError(ctx, err)
 	}
 	fmt.Println(data)
-	return ctx.Redirect(302, "/inventaris/v1/master-data/provinsi")
+	return ctx.Redirect(302, "/admin/v1/master-data/provinsi")
 }
 
 func (c *ProvDataController) Delete(ctx echo.Context) error {

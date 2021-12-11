@@ -1,82 +1,65 @@
-<div class="modal fade" id="modal-lg">
+<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
+
             <div class="modal-header">
-                <h4 class="modal-title">Tambah Data Kecamatan</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
                 </button>
+                <h4 class="modal-title" id="myModalLabel">Modal title</h4>
             </div>
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-md">
-                        <div class="form-group">
-                            <label for="id_kec">ID</label>
-                            <input type="text" class="form-control" id="id_kec" name="id_kec" required>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="id_kapkac">ID</label>
-                            <input type="text" class="form-control" id="id_kapkac" name="id_kapkac" required>
-                        </div>
-                    </div>
-                    <div class="col-md">
-                        <div class="form-group">
-                            <label for="nama_kecamatan">Provinsi</label>
-                            <input type="text" class="form-control" id="nama_kecamatan" name="nama_kecamatan" required>
+            <form id="form2" method="POST" action="/kec/addkec">
+                <div class="modal-body">
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Kabupaten</label>
+                                    <select id="id_kab_fk" class="form-control" name="id_kab_fk"></select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Kecamatan</label>
+                                    <input type="text" class="form-control" id="nama_kecamatan" name="nama_kecamatan" required>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="modal-footer justify-content-between">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close
-                </button>
-                <button type="button" class="btn btn-primary">Save</button>
-            </div>
-        </div>
-        <!-- /.modal-content -->
-    </div>
-    <!-- /.modal-dialog -->
-</div>
-<div class="modal fade" id="modal-update">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title">Update Data Provinsi</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-md">
-                        <div class="form-group">
-                            <label for="id_kec">ID</label>
-                            <input type="text" class="form-control" id="id_kec" name="id_kec" disabled required>
-                        </div>
-                    </div>
-                    <div class="col-md">
-                        <div class="form-group">
-                            <label for="id_kapkc">ID kabupaten</label>
-                            <input type="text" class="form-control" id="id_kapkc" name="id_kapkc" disabled required>
-                        </div>
-                    </div>
-                    <div class="col-md">
-                        <div class="form-group">
-                            <label for="nama_kecamatan">Kecamatan</label>
-                            <input type="text" class="form-control" id="nama_kecamatan" name="nama_kecamatan" required>
-                        </div>
-                    </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" onclick="Submit()" class="btn btn-primary">Save changes</button>
                 </div>
-            </div>
-            <div class="modal-footer justify-content-between">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close
-                </button>
-                <button type="button" class="btn btn-primary">Save</button>
-            </div>
+            </form>
         </div>
-        <!-- /.modal-content -->
     </div>
-    <!-- /.modal-dialog -->
 </div>
+<script type="text/javascript">
+    function Submit() {
+        var kab = "&id_kab_fk=" + document.getElementById("id_kab_fk").value;
+        console.log(kab)
+        $.ajax({
+            url: "/kec/addkec",
+            data: $("#form2").serialize() + kab,
+            type: 'POST',
+            // contentType: 'multipart/form-data',
+            success: function (res) {
+                swal({
+                    title: 'Created !',
+                    text: "Data has been Save",
+                    icon: 'success',
+                    buttons: true,
+                }).then(function() {
+                    window.location.href = "/admin/v1/master-data/kec";
+                });
+            },
+            error: function (res) {
+                swal({
+                    type: 'warning',
+                    title: 'Oops...',
+                    text: 'Something went wrong!',
+                })
+            }
+        })
+    }
+</script>

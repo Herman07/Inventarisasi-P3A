@@ -6,7 +6,7 @@ import (
 	"github.com/labstack/echo/v4/middleware"
 	"gorm.io/gorm"
 	"net/http"
-	"skeleton-echo/utils"
+	"Inventarisasi-P3A/utils"
 )
 
 type authorizationConfig struct {

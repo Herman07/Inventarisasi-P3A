@@ -9,7 +9,8 @@ type StatusLegal struct {
 	ID                  string `gorm:"column:id_status_legal" json:"id_status_legal"`
 	TahunPembentukan    string `gorm:"column:tahun_pembentukan" json:"tahun_pembentukan"`
 	LamTahunPembentukan string `gorm:"column:lampiran_tahun_pembentukan" json:"lampiran_tahun_pembentukan"`
-	LamKplDesa          string `gorm:"column:diket_kep_dc" json:"diket_kep_dc"`
+	LamKplDesa          string `gorm:"column:lampiran_kep_dc" json:"lampiran_kep_dc"`
+	DiketKplDaerah      string `gorm:"column:diket_kep_dc" json:"diket_kep_dc"`
 	SKBupati            string `gorm:"column:no_sk_bupati" json:"no_sk_bupati"`
 	LamSKBupati         string `gorm:"column:lampiran_sk_bupati" json:"lampiran_sk_bupati"`
 	AkteNotaris         string `gorm:"column:akte_notaris" json:"akte_notaris"`

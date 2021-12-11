@@ -1,9 +1,9 @@
 package services
 
 import (
-	"skeleton-echo/models"
-	"skeleton-echo/repository"
-	"skeleton-echo/request"
+	"Inventarisasi-P3A/models"
+	"Inventarisasi-P3A/repository"
+	"Inventarisasi-P3A/request"
 	"strings"
 )
 
@@ -48,6 +48,7 @@ func (s *KabDataService) QueryDatatable(searchValue string,orderType string, ord
 func (s *KabDataService) Create(request request.KabReq) (*models.MasterDataKab, error) {
 	entity := models.MasterDataKab{
 		Kabupaten:  request.Nama,
+		IDProv: request.IDProv,
 		ID: request.ID,
 	}
 	data, err := s.KabDataRepository.Create(entity)

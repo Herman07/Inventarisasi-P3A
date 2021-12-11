@@ -7,7 +7,7 @@ import (
 	"github.com/labstack/echo/v4"
 	"gopkg.in/go-playground/validator.v9"
 	"net/http"
-	"skeleton-echo/utils"
+	"Inventarisasi-P3A/utils"
 )
 
 type Controller struct {

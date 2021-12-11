@@ -2,9 +2,9 @@ package config
 
 import (
 	"gorm.io/gorm"
-	"skeleton-echo/controllers"
-	"skeleton-echo/repository"
-	"skeleton-echo/services"
+	"Inventarisasi-P3A/controllers"
+	"Inventarisasi-P3A/repository"
+	"Inventarisasi-P3A/services"
 )
 
 func InjectAuthController(db *gorm.DB) controllers.FrontAuthController {
@@ -39,34 +39,9 @@ func InjectKecController(db *gorm.DB) controllers.KecDataController {
 	kecController := controllers.NewKecDataController(kecService)
 	return kecController
 }
-func InjectStatusController(db *gorm.DB) controllers.StatusDataController {
-	statusRepository := repository.NewStatusDataRepository(db)
-	statusService := services.NewStatusDataService(statusRepository)
-	statusController := controllers.NewStatusDataController(statusService)
-	return statusController
-}
-func InjectPengurusController(db *gorm.DB) controllers.PengurusDataController {
-	pengurusRepository := repository.NewPengurusDataRepository(db)
-	pengurusService := services.NewPengurusDataService(pengurusRepository)
-	pengurusController := controllers.NewPengurusDataController(pengurusService)
-	return pengurusController
-}
-func InjectIrigasiController(db *gorm.DB) controllers.IrigasiDataController {
-	irigasiRepository := repository.NewIrigasiDataRepository(db)
-	irigasiService := services.NewIrigasiDataService(irigasiRepository)
-	irigasiController := controllers.NewIrigasiDataController(irigasiService)
-	return irigasiController
-}
-func InjectPertanianController(db *gorm.DB) controllers.TaniDataController {
-	taniRepository := repository.NewTaniDataRepository(db)
-	taniService := services.NewTaniDataService(taniRepository)
-	taniController := controllers.NewTaniDataController(taniService)
-	return taniController
-}
-
-func InjectUsersController(db *gorm.DB) controllers.UsersDataController {
-	usersRepository := repository.NewUsersDataRepository(db)
-	usersService := services.NewUsersDataService(usersRepository)
-	usersController := controllers.NewUsersDataController(usersService)
-	return usersController
+func InjectUserController(db *gorm.DB) controllers.UsersDataController {
+	userRepository := repository.NewUsersDataRepository(db)
+	userService := services.NewUsersDataService(userRepository)
+	userController := controllers.NewUsersDataController(userService)
+	return userController
 }

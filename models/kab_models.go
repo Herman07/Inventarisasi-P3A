@@ -7,7 +7,7 @@ import (
 
 type MasterDataKab struct {
 	ID        string `gorm:"column:id_kab" json:"id_kab"`
-	IDProv    string `gorm:"column:id_provkb" json:"id_provkb"`
+	IDProv    string `gorm:"column:id_prov_fk" json:"id_prov_fk"`
 	Kabupaten string `gorm:"column:nama_kab" json:"nama_kab"`
 }
 

@@ -1,23 +1,12 @@
 package utils
 
 import (
-	"bytes"
-	"encoding/base64"
-	"errors"
-	"github.com/google/uuid"
 	"github.com/labstack/echo/v4"
 	"gorm.io/gorm"
 	"gorm.io/gorm/clause"
-	"io"
-	"net/http"
-	"os"
-	"path/filepath"
 	"reflect"
-	"regexp"
-	"skeleton-echo/models"
-	"skeleton-echo/utils/session"
-	"strconv"
-	"strings"
+	"Inventarisasi-P3A/models"
+	"Inventarisasi-P3A/utils/session"
 	"time"
 )
 
@@ -38,67 +27,6 @@ func ItemExists(arrayType interface{}, item interface{}) bool {
 	}
 	return false
 }
-
-func GetAmountFromRupiah(rupiah string) int64 {
-	re := regexp.MustCompile("[0-9]+")
-	getNumber := re.FindAllString(rupiah, -1)
-	amountString := strings.Join(getNumber, "")
-	amount, err := strconv.ParseInt(amountString, 10, 64)
-	if err != nil {
-		return 0
-	}
-	return amount
-}
-
-func UploadImageV2(src string) (string, error) {
-	if src == "" {
-		return "", errors.New("image base64 is null")
-	}
-	decode, err := base64.StdEncoding.DecodeString(src)
-	if err != nil {
-		return "", err
-	}
-	ext := http.DetectContentType(decode)
-	if ext == "text/plain; charset=utf-8" {
-		return "", errors.New("cannot get extension image")
-	}
-	res := strings.Split(ext, "image/")
-
-	fName := uuid.New().String() + "." + res[1]
-	r := bytes.NewReader(decode)
-	dir, _ := os.Getwd()
-	fileLocation := filepath.Join(dir, "assets/upload/avatars", fName)
-	targetFile, err := os.OpenFile(fileLocation, os.O_WRONLY|os.O_CREATE, 0666)
-	if err != nil {
-		return "", err
-	}
-	defer targetFile.Close()
-
-	if _, err := io.Copy(targetFile, r); err != nil {
-		return "", err
-	}
-	return "/assets/upload/avatars/" + fName, err
-}
-
-
-func ConfigTime(tm int)(date string) {
-	t := time.Now()
-	convert := t.AddDate(0,0,-tm)
-	date = convert.Format("2006-01-02")
-	return	date
-}
-
-func StrToUint64(str string) (uint64, error) {
-	i, err := strconv.ParseInt(str, 10, 64)
-	return uint64(i), err
-}
-
-func FormatFileName(file string) string {
-	var extension = filepath.Ext(file)
-	filename := strconv.FormatInt(time.Now().Unix(), 10) + extension
-	return filename
-}
-
 func GetUserInfoFromContext(ctx echo.Context, db *gorm.DB) (userModel models.Users, err error) {
 	result, err := session.Manager.Get(ctx, session.SessionId)
 	if err != nil {

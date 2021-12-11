@@ -6,6 +6,7 @@ vendor
 Gopkg.lock
 build/*.env
 /assets/upload/*
+/static/image
 *.rsa
 *.pub
 *.log

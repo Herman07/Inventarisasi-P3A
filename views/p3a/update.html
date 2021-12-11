@@ -1,0 +1,679 @@
+{{define "content"}}
+<!-- page content -->
+<form id="form" method="POST" action="/admin/v1/inventaris/do-update/{{.data.IDP3A}}" enctype="multipart/form-data">
+    <div class="right_col" role="main">
+        <div class="">
+            <div class="clearfix"></div>
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="x_panel">
+                        <div class="x_title">
+                            <h3>Update Data P3A</h3>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="x_content">
+                            <br/>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Provinsi<span class="">*</span></label>
+                                    <select id="prov" class="form-control" name="prov">
+                                        <option value="{{.data.NamaProv}}">{{.data.NamaProv}}</option>
+                                    </select>
+                                    <input type="text" name="id_prov_fk" id="id_prov_fk" value="{{.data.IDProv}}"
+                                           hidden>
+
+                                </div>
+                                <div class="form-group">
+                                    <label>Kabupaten<span class="">*</span></label>
+                                    <select id="kab" class="form-control" name="kab" onchange="GetValue()"
+                                    >
+                                        <option value="{{.data.NamaKab}}">{{.data.NamaKab}}</option>
+                                    </select>
+                                    <input type="text" name="id_kab_fk" id="id_kab_fk" value="{{.data.IDKab}}" hidden>
+                                </div>
+                                <div class="form-group">
+                                    <label>Kecamatan</label><span class="">*</span>
+                                    <select id="kec" class="form-control"
+                                            name="kec" onchange="GetVal()">
+                                        <option value="{{.data.NamaKec}}">{{.data.NamaKec}}</option>
+                                    </select>
+                                    <input type="text" name="id_kec_fk" id="id_kec_fk" value="{{.data.IDKec}}" hidden>
+                                </div>
+                                <input type="text" name="id_p3a" value="{{.data.IDP3A}}" hidden>
+                                <div class="form-group">
+                                    <label>No Urut <span class="">*</span>
+                                    </label>
+                                    <input type="text" class="form-control"
+                                           name="no_urut" value="{{.data.NoUrut}}">
+                                </div>
+                                <div class="form-group">
+                                    <label>Nama P3A<span class="">*</span></label>
+                                    <input type="text" class="form-control"
+                                           name="nama_p3a" value="{{.data.NamaP3A}}">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Nama Daerah Irigasi<span class="">*</span></label>
+                                    <input type="text" class="form-control" name="nama_daerah_irigasi"
+                                           value="{{.data.DaerahIrigasi}}">
+                                </div>
+                                <div class="form-group">
+                                    <label>Luas Wilayah<span class="">*</span></label>
+                                    <input type="text" class="form-control" name="luas_wilayah"
+                                           value="{{.data.LuasWilayah}}">
+                                </div>
+                                <div class="form-group">
+                                    <label>Jumlah P3A<span class="">*</span></label>
+                                    <input type="text" class="form-control" name="jumlah_p3a"
+                                           value="{{.data.JumlahP3A}}">
+                                </div>
+                                <div class="form-group">
+                                    <label>Luas Layanan P3A<span class="">*</span></label>
+                                    <input type="text" class="form-control" name="luas_layanan_p3a"
+                                           value="{{.data.LuasLayananP3A}}">
+                                </div>
+                                <div class="form-group">
+                                    <label>Keterangan<span class="">*</span></label>
+                                    <textarea type="text" class="form-control" name="keterangan">{{.data.Keterangan}}</textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="x_panel">
+                        <div class="x_title">
+                            <h3>Update Data Status Ilegal P3A</h3>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="col-md-6">
+                            <input type="text" name="id_status_legal" id="id_status_legal" value="{{.data.IDStatus}}"
+                                   hidden>
+                            <div class="form-group">
+                                <label>Tahun Pembentukan<span class="">*</span></label>
+                                <input type="text" class="form-control" name="tahun_pembentukan"
+                                       value="{{.data.TahunPembentukan}}">
+                            </div>
+                            <div class="form-group">
+                                <label>Diket Kepala Daerah<span class="">*</span></label>
+                                <input type="text" class="form-control" name="diket_kep_dc"
+                                       value="{{.data.DiketKplDaerah}}">
+                            </div>
+                            <div class="form-group">
+                                <label>Nomor SK Bupati<span class="">*</span></label>
+                                <input type="text" class="form-control" name="no_sk_bupati" value="{{.data.SKBupati}}">
+                            </div>
+                            <div class="form-group">
+                                <label>Lampiran Tahun Pembentukan<span class="">*</span></label>
+                                <div class="avatar-preview">
+                                    <div id="imagePreview1"
+                                         style="background-image: url(/static/image/{{.data.LamTahunPembentukan}});">
+                                    </div>
+                                </div>
+                                <br>
+                                <div class=" avatar-upload avatar-edit">
+                                    <input type="file" name="lampiran_tahun_pembentukan" accept=".png, .jpg, .jpeg"
+                                           value="{{.data.LamTahunPembentukan}}"
+                                    />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Lampiran Kepala Daerah<span class="">*</span></label>
+                                <div class="avatar-preview">
+                                    <div id="imagePreview2"
+                                         style="background-image: url(/static/image/{{.data.LamKplDesa}});">
+                                    </div>
+                                </div>
+                                <br>
+                                <div class=" avatar-upload avatar-edit">
+                                    <input type="file" name="lampiran_kep_dc"
+                                           accept=".png, .jpg, .jpeg" value="{{.data.LamKplDesa}}"
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Akte Notaris<span class="">*</span></label>
+                                <input type="text" class="form-control" name="akte_notaris"
+                                       value="{{.data.AkteNotaris}}">
+                            </div>
+                            <div class="form-group">
+                                <label>Nomor Pendaftaran<span class="">*</span></label>
+                                <input type="text" class="form-control" name="no_pendaftaran"
+                                       value="{{.data.NoPendaftaran}}">
+                            </div>
+                            <div class="form-group">
+                                <label>Lampiran Akte Notaris<span class="">*</span></label>
+                                <div class="avatar-preview">
+                                    <div id="imagePreview4"
+                                         style="background-image: url(/static/image/{{.data.LamAkteNotaris}});">
+                                    </div>
+                                </div>
+                                <br>
+                                <div class=" avatar-upload avatar-edit">
+                                    <input type="file" name="lampiran_akte_notaris"
+                                           accept=".png, .jpg, .jpeg" value="{{.data.LamAkteNotaris}}"
+                                    />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Lampiran SK Bupati<span class="">*</span></label>
+                                <div class="avatar-preview">
+                                    <div id="imagePreview3"
+                                         style="background-image: url(/static/image/{{.data.LamSKBupati}});">
+                                    </div>
+                                </div>
+                                <br>
+                                <div class=" avatar-upload avatar-edit">
+                                    <input type="file" name="lampiran_sk_bupati"
+                                           accept=".png, .jpg, .jpeg" value="{{.data.LamSKBupati}}"
+                                    />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Lampiran No Pendaftaran<span class="">*</span></label>
+                                <div class="avatar-preview">
+                                    <div id="imagePreview5"
+                                         style="background-image: url(/static/image/{{.data.LamPendaftaran}});">
+                                    </div>
+                                </div>
+                                <br>
+                                <div class=" avatar-upload avatar-edit">
+                                    <input type="file" name="lampiran_pendaftaran"
+                                           accept=".png, .jpg, .jpeg" value="{{.data.LamPendaftaran}}"
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="x_panel">
+                        <div class="x_title">
+                            <h3>Update Data Kepengurusan</h3>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <input type="text" name="id_kepengurusan" id="id_kepengurusan"
+                                           value="{{.data.IDPengurusan}}" hidden>
+                                    <div class="form-group">
+                                        <label>Ketua<span class="">*</span></label>
+                                        <br>
+                                        {{if eq .data.Ketua "L"}}
+                                        L:
+                                        <input type="radio" class="flat" value="L" name="ketua" checked/>
+                                        P:
+                                        <input type="radio" class="flat" value="P" name="ketua"/>
+                                        {{else if eq .data.Ketua "P"}}
+                                        L:
+                                        <input type="radio" class="flat" value="L" name="ketua"/>
+                                        P:
+                                        <input type="radio" class="flat" value="P" name="ketua" checked/>
+                                        {{else}}
+                                        L:
+                                        <input type="radio" class="flat" value="L" name="ketua"/>
+                                        P:
+                                        <input type="radio" class="flat" value="P" name="ketua" />
+                                        {{end}}
+                                    </div>
+                                    <br>
+                                    <div class="form-group">
+                                        <label>Wakil<span class="">*</span></label>
+                                        <br>
+                                        {{if eq .data.Wakil "L"}}
+                                        L:
+                                        <input type="radio" class="flat" value="L" name="wakil" checked/>
+                                        P:
+                                        <input type="radio" class="flat" value="P" name="wakil"/>
+                                        {{else if eq .data.Wakil "P"}}
+                                        L:
+                                        <input type="radio" class="flat" value="L" name="wakil"/>
+                                        P:
+                                        <input type="radio" class="flat" value="P" name="wakil" checked/>
+                                        {{else}}
+                                        L:
+                                        <input type="radio" class="flat" value="L" name="wakil"/>
+                                        P:
+                                        <input type="radio" class="flat" value="P" name="wakil" />
+                                        {{end}}
+                                    </div>
+                                    <br>
+                                    <div class="form-group">
+                                        <label>Sekretaris<span class="">*</span></label>
+                                        <br>
+                                        {{if eq .data.Sekretaris "L"}}
+                                        L:
+                                        <input type="radio" class="flat" value="L" name="sekretaris" checked/>
+                                        P:
+                                        <input type="radio" class="flat" value="P" name="sekretaris"/>
+                                        {{else if eq .data.Sekretaris "P"}}
+                                        L:
+                                        <input type="radio" class="flat" value="L" name="sekretaris"/>
+                                        P:
+                                        <input type="radio" class="flat" value="P" name="sekretaris" checked/>
+                                        {{else}}
+                                        L:
+                                        <input type="radio" class="flat" value="L" name="sekretaris"/>
+                                        P:
+                                        <input type="radio" class="flat" value="P" name="sekretaris" />
+                                        {{end}}
+                                    </div>
+                                    <br>
+                                    <div class="form-group">
+                                        <label>Bendahara<span class="">*</span></label>
+                                        <br>
+                                        {{if eq .data.Bendahara "L"}}
+                                        L:
+                                        <input type="radio" class="flat" value="L" name="bendahara" checked/>
+                                        P:
+                                        <input type="radio" class="flat" value="P" name="bendahara"/>
+                                        {{else if eq .data.Bendahara "P"}}
+                                        L:
+                                        <input type="radio" class="flat" value="L" name="bendahara"/>
+                                        P:
+                                        <input type="radio" class="flat" value="P" name="bendahara" checked/>
+                                        {{else}}
+                                        L:
+                                        <input type="radio" class="flat" value="L" name="bendahara"/>
+                                        P:
+                                        <input type="radio" class="flat" value="P" name="bendahara" />
+                                        {{end}}
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Seksi Teknik<span class="">*</span></label>
+                                        <br>
+                                        {{if eq .data.SekTeknik "L"}}
+                                        L:
+                                        <input type="radio" class="flat" value="L" name="sek_teknik" checked/>
+                                        P:
+                                        <input type="radio" class="flat" value="P" name="sek_teknik"/>
+                                        {{else if eq .data.SekTeknik "P"}}
+                                        L:
+                                        <input type="radio" class="flat" value="L" name="sek_teknik"/>
+                                        P:
+                                        <input type="radio" class="flat" value="P" name="sek_teknik" checked/>
+                                        {{else}}
+                                        L:
+                                        <input type="radio" class="flat" value="L" name="sek_teknik"/>
+                                        P:
+                                        <input type="radio" class="flat" value="P" name="sek_teknik"/>
+                                        {{end}}
+                                    </div>
+                                    <br>
+                                    <div class="form-group">
+                                        <label>Seksi Operasi<span class="">*</span></label>
+                                        <br>
+                                        {{if eq .data.SekOP "L"}}
+                                        L:
+                                        <input type="radio" class="flat" value="L" name="sek_op" checked/>
+                                        P:
+                                        <input type="radio" class="flat" value="P" name="sek_op"/>
+                                        {{else if eq .data.SekOP "P"}}
+                                        L:
+                                        <input type="radio" class="flat" value="L" name="sek_op"/>
+                                        P:
+                                        <input type="radio" class="flat" value="P" name="sek_op" checked/>
+                                        {{else}}
+                                        L:
+                                        <input type="radio" class="flat" value="L" name="sek_op"/>
+                                        P:
+                                        <input type="radio" class="flat" value="P" name="sek_op"/>
+                                        {{end}}
+                                    </div>
+                                    <br>
+                                    <div class="form-group">
+                                        <label>Seksi Binis<span class="">*</span></label>
+                                        <br>
+                                        {{if eq .data.SekBisnis "L"}}
+                                        L:
+                                        <input type="radio" class="flat" value="L" name="sek_bisnis" checked/>
+                                        P:
+                                        <input type="radio" class="flat" value="P" name="sek_bisnis"/>
+                                        {{else if eq .data.SekBisnis "P"}}
+                                        L:
+                                        <input type="radio" class="flat" value="L" name="sek_bisnis"/>
+                                        P:
+                                        <input type="radio" class="flat" value="P" name="sek_bisnis" checked/>
+                                        {{else}}
+                                        L:
+                                        <input type="radio" class="flat" value="L" name="sek_bisnis"/>
+                                        P:
+                                        <input type="radio" class="flat" value="P" name="sek_bisnis"/>
+                                        {{end}}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Jumlah Anggota<span class="">*</span></label>
+                                <input type="text" class="form-control" name="jumlah_anggota"
+                                       value="{{.data.JumlahAnggota}}">
+                            </div>
+                            <div class="form-group">
+                                <label>No ADRT<span class="">*</span></label>
+                                <select class="form-control" name="no_ad_art" id="no_ad_art">
+                                    <option value="{{.data.NoADRT}}">{{.data.NoADRT}}</option>
+                                    <option>Ada</option>
+                                    <option>Tidak Ada</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label> Lampiran ADRT <span class="">*</span></label>
+                                <div class="avatar-preview">
+                                    <div id="imagePreview6"
+                                         style="background-image: url(/static/image/{{.data.LampiranADRT}});">
+                                    </div>
+                                </div>
+                                <br>
+                                <div class=" avatar-upload avatar-edit">
+                                    <input type="file" name="lampiran_ad_art"
+                                           accept=".png, .jpg, .jpeg " value="{{.data.LampiranADRT}}"
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Sekretariat<span class="">*</span></label>
+                                <select class="form-control" name="sekretariat">
+                                    <option value="{{.data.Sekretariat}}">{{.data.Sekretariat}}</option>
+                                    <option>Ada</option>
+                                    <option>Tidak Ada</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Lampiran Sekretariat<span class="">*</span></label>
+                                <div class="avatar-preview">
+                                    <div id="imagePreview7"
+                                         style="background-image: url(/static/image/{{.data.LampiranSekretariat}});">
+                                    </div>
+                                </div>
+                                <br>
+                                <div class=" avatar-upload avatar-edit">
+                                    <input type="file" name="lampiran_sekretariat"
+                                           accept=".png, .jpg, .jpeg" value="{{.data.LampiranSekretariat}}"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Presentase Perempuan P3A<span class="">*</span></label>
+                                <input type="text" class="form-control" name="persentase_perempuan_p3a"
+                                       id="persentase_perempuan_p3a" value="{{.data.PresentasiPerempuanP3A}}">
+                            </div>
+                            <div class="form-group">
+                                <label>Areal Tersier<span class="">*</span></label>
+                                <input type="text" class="form-control" name="areal_tersier"
+                                       value="{{.data.ArealTersier}}">
+                            </div>
+                            <div class="form-group">
+                                <label>Pengisian Buku<span class="">*</span></label>
+                                <input type="text" class="form-control" name="pengisian_buku"
+                                       value="{{.data.PengisianBuku}}">
+                            </div>
+                            <div class="form-group">
+                                <label>Iuran<span class="">*</span></label>
+                                <input type="text" class="form-control" name="iuran" value="{{.data.Iuran}}">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="x_panel">
+                        <div class="x_title">
+                            <h3>Update Data Teknik</h3>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="col-md-6">
+                            <input type="text" name="id_t_irigasi" id="id_t_irigasi" value="{{.data.IDIrig}}" hidden>
+                            <div class="form-group">
+                                <label>Operasi<span class="">*</span></label>
+                                <select class="form-control" name="operasi">
+                                    <option value="{{.data.Operasi}}">{{.data.Operasi}}</option>
+                                    <option>Ada</option>
+                                    <option>Tidak Ada</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Partisipatif<span class="">*</span></label>
+                                <select class="form-control" name="partisipatif">
+                                    <option value="{{.data.Partisipatif}}">{{.data.Partisipatif}}</option>
+                                    <option>Ada</option>
+                                    <option>Tidak Ada</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <input type="text" name="id_t_pertanian" id="id_t_pertanian" value="{{.data.IDTani}}"
+                                   hidden>
+                            <div class="form-group">
+                                <label>Pola Tanam<span class="">*</span></label>
+                                <select class="form-control" name="pola_tanam">
+                                    <option value="{{.data.PolaTanam}}">{{.data.PolaTanam}}</option>
+                                    <option>Ada</option>
+                                    <option>Tidak Ada</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Usaha Tani<span class="">*</span></label>
+                                <select class="form-control" name="usaha_tani">
+                                    <option value="{{.data.UsahaTani}}">{{.data.UsahaTani}}</option>
+                                    <option>Ada</option>
+                                    <option>Tidak Ada</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="x_panel">
+                        <div class="form-group">
+                            <div class="col-md-12 text-right">
+                                <a href="/admin/v1/inventaris" class="btn btn-primary" type="button">Cancel</a>
+                                <button type="submit" class="btn btn-success">Submit</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+<!-- /page content -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+    $.ajax({
+        url: '/prov/32',
+        type: "POST",
+        success: function (res) {
+            val = res.data
+            x = val.id_prov
+            y = val.nama_provinsi
+            var myselect = $('<select>');
+            myselect.append($('<option></option>').val(x).html(y));
+            $('#prov').append(myselect.html());
+        }
+
+    })
+    $.ajax({
+        url: '/kab/32',
+        type: "POST",
+        success: function (res) {
+            val = res.data
+            var myselect = $('<select>');
+            $.each(val, function (key, index) {
+                var y = index.id_kab
+                var x = index.nama_kab
+                myselect.append($('<option></option>').val(y).html(x));
+            });
+            $('#kab').append(myselect.html());
+            $('#id_prov_fk').val(x)
+        }
+
+    });
+
+    function GetValue(id) {
+        id = $('#kab').val();
+        pip = [];
+        console.log("pip 2 : ", pip)
+        $.ajax({
+            url: '/kec/' + id,
+            type: 'POST',
+            success: function (res) {
+                val = res.data
+                pip = [];
+                console.log("pip 3 : ", pip)
+                $.each(val, function (id, text) {
+                    pip.push({
+                        id: text.id_kec,
+                        text: text.nama_kecamatan,
+                    })
+                    $('#kec').select2({
+                        data: pip
+                    })
+                })
+                $('#id_kab_fk').val(id)
+
+            }
+        })
+    }
+
+    function GetVal(id) {
+        id = document.getElementById('kec').value;
+        $('#id_kec_fk').val(id)
+    }
+
+    function readURL1(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $('#imagePreview1').css('background-image', 'url(' + e.target.result + ')');
+                $('#imagePreview1').hide();
+                $('#imagePreview1').fadeIn(650);
+
+
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    function readURL2(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $('#imagePreview2').css('background-image', 'url(' + e.target.result + ')');
+                $('#imagePreview2').hide();
+                $('#imagePreview2').fadeIn(650);
+
+
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    function readURL3(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $('#imagePreview3').css('background-image', 'url(' + e.target.result + ')');
+                $('#imagePreview3').hide();
+                $('#imagePreview3').fadeIn(650);
+
+
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    function readURL4(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $('#imagePreview4').css('background-image', 'url(' + e.target.result + ')');
+                $('#imagePreview4').hide();
+                $('#imagePreview4').fadeIn(650);
+
+
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    function readURL5(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $('#imagePreview5').css('background-image', 'url(' + e.target.result + ')');
+                $('#imagePreview5').hide();
+                $('#imagePreview5').fadeIn(650);
+
+
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    function readURL6(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $('#imagePreview6').css('background-image', 'url(' + e.target.result + ')');
+                $('#imagePreview6').hide();
+                $('#imagePreview6').fadeIn(650);
+
+
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    function readURL7(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $('#imagePreview7').css('background-image', 'url(' + e.target.result + ')');
+                $('#imagePreview7').hide();
+                $('#imagePreview7').fadeIn(650);
+
+
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    $("#lampiran_tahun_pembentukan").change(function () {
+        readURL1(this);
+    });
+    $("#diket_kep_dc").change(function () {
+        readURL2(this);
+    });
+    $("#lampiran_sk_bupati").change(function () {
+        readURL3(this);
+    });
+    $("#lampiran_akte_notaris").change(function () {
+        readURL4(this);
+    });
+    $("#lampiran_pendaftaran").change(function () {
+        readURL5(this);
+    });
+    $("#lampiran_ad_art").change(function () {
+        readURL6(this);
+    });
+    $("#lampiran_sekretariat").change(function () {
+        readURL7(this);
+    });
+</script>
+{{end}}

@@ -4,89 +4,90 @@
     <div class="">
         <div class="page-title">
             <div class="title_left">
-                <h3>Inventarisasi P3A</h3>
+                <h3>Create Inventarisasi P3A</h3>
             </div>
         </div>
         <div class="clearfix"></div>
-
         <div class="row">
-
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                     <div class="x_title">
                         <div class="clearfix"></div>
                     </div>
-                    <div class="x_content">
-
-
-                        <!-- Smart Wizard -->
-                        <div id="wizard" class="form_wizard wizard_horizontal">
-                            <ul class="wizard_steps">
-                                <li>
-                                    <a href="#step-1">
-                                        <span class="step_no">1</span>
-                                        <span class="step_descr">
+                    <form class="form-horizontal form-label-left" id="form" method="POST"
+                          action="/admin/v1/inventaris/store"
+                          enctype="multipart/form-data">
+                        <div class="x_content">
+                            <!-- Smart Wizard -->
+                            <div id="wizard" class="form_wizard wizard_horizontal">
+                                <ul class="wizard_steps">
+                                    <li>
+                                        <a href="#step-1">
+                                            <span class="step_no">1</span>
+                                            <span class="step_descr">
                                               Step 1<br/>
-                                              <small>Step 1 description</small>
+                                              <small>Form Lokasi</small>
                                           </span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#step-2">
-                                        <span class="step_no">2</span>
-                                        <span class="step_descr">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#step-2">
+                                            <span class="step_no">2</span>
+                                            <span class="step_descr">
                                               Step 2<br/>
-                                              <small>Step 2 description</small>
+                                              <small>Form P3A</small>
                                           </span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#step-3">
-                                        <span class="step_no">3</span>
-                                        <span class="step_descr">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#step-3">
+                                            <span class="step_no">3</span>
+                                            <span class="step_descr">
                                               Step 3<br/>
-                                              <small>Step 3 description</small>
+                                              <small>Form Status Ilegal</small>
                                           </span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#step-4">
-                                        <span class="step_no">4</span>
-                                        <span class="step_descr">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#step-4">
+                                            <span class="step_no">4</span>
+                                            <span class="step_descr">
                                               Step 4<br/>
-                                              <small>Step 4 description</small>
+                                              <small>Form Kepengurusan</small>
                                           </span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#step-5">
-                                        <span class="step_no">4</span>
-                                        <span class="step_descr">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#step-5">
+                                            <span class="step_no">5</span>
+                                            <span class="step_descr">
                                               Step 5<br/>
-                                              <small>Step 5 description</small>
+                                              <small>Form Teknik Irigasi</small>
                                           </span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#step-6">
-                                        <span class="step_no">4</span>
-                                        <span class="step_descr">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#step-6">
+                                            <span class="step_no">6</span>
+                                            <span class="step_descr">
                                               Step 6<br/>
-                                              <small>Step 6 description</small>
+                                              <small>Form Teknik Pertanian</small>
                                           </span>
-                                    </a>
-                                </li>
-                            </ul>
-                            <form class="form-horizontal form-label-left" id="form" method="POST">
+                                        </a>
+                                    </li>
+                                </ul>
+
                                 <div id="step-1">
                                     <div class="form-group">
                                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Provinsi<span
                                                 class="required">*</span>
                                         </label>
                                         <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <select id="prov" class="form-control" name="nama_prov" >
+                                            <select id="prov" class="form-control" name="nama_prov">
+                                                <option></option>
                                             </select>
                                         </div>
+                                        <input type="text" name="id_prov_fk" id="id_prov_fk" hidden>
                                     </div>
                                     <div class="form-group">
                                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Kabupaten<span
@@ -98,16 +99,20 @@
                                                 <option></option>
                                             </select>
                                         </div>
+                                        <input type="text" name="id_kab_fk" id="id_kab_fk" hidden>
                                     </div>
                                     <div class="form-group">
-                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Kecamatan</label>
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Kecamatan <span
+                                                class="required">*</span></label>
+
                                         <div class="col-md-6 col-sm-6 col-xs-12">
                                             <select id="kec" class="form-control"
-                                                    name="nama_kecamatan">
+                                                    name="nama_kecamatan" onchange="GetVal()">
                                                 <option></option>
                                             </select>
                                         </div>
                                     </div>
+                                    <input type="text" name="id_kec_fk" id="id_kec_fk" hidden>
                                 </div>
                                 <div id="step-2">
                                     <div class="form-group">
@@ -115,8 +120,7 @@
                                                 class="required">*</span>
                                         </label>
                                         <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <input type="number" data-validate-length-range="5"
-                                                   name="no_urut"
+                                            <input type="text" name="no_urut"
                                                    class="form-control col-md-7 col-xs-12">
                                         </div>
                                     </div>
@@ -125,8 +129,7 @@
                                             <span class="required">*</span>
                                         </label>
                                         <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <input type="text" data-validate-length-range="5"
-                                                   name="nama_p3a"
+                                            <input type="text" name="nama_p3a"
                                                    class="form-control col-md-7 col-xs-12">
                                         </div>
                                     </div>
@@ -135,8 +138,8 @@
                                             <span class="required">*</span>
                                         </label>
                                         <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <input type="text"  name="nama_daerah_irigasi"
-                                                   class="form-control col-md-7 col-xs-12" required>
+                                            <input type="text" name="nama_daerah_irigasi"
+                                                   class="form-control col-md-7 col-xs-12">
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -144,17 +147,17 @@
                                                 class="required">*</span>
                                         </label>
                                         <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <input type="number"  name="luas_wilayah"
-                                                   class="form-control col-md-7 col-xs-12" required>
+                                            <input type="text" name="luas_wilayah"
+                                                   class="form-control col-md-7 col-xs-12">
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Jumlah P3A<span>
-                                        class="required">*</span>
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Jumlah P3A<span
+                                                class="required">*</span>
                                         </label>
                                         <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <input type="number"  name="jumlah_p3a"
-                                                   class="form-control col-md-7 col-xs-12" required>
+                                            <input type="text" name="jumlah_p3a"
+                                                   class="form-control col-md-7 col-xs-12">
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -162,8 +165,8 @@
                                                 class="required">*</span>
                                         </label>
                                         <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <input type="number"  name="luas_layanan_p3a"
-                                                   class="form-control col-md-7 col-xs-12" required>
+                                            <input type="text" name="luas_layanan_p3a"
+                                                   class="form-control col-md-7 col-xs-12">
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -171,8 +174,8 @@
                                                 class="required">*</span>
                                         </label>
                                         <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <input type="text"  name="keterangan"
-                                                   class="form-control col-md-7 col-xs-12" required>
+                                            <input type="text" name="keterangan"
+                                                   class="form-control col-md-7 col-xs-12">
                                         </div>
                                     </div>
                                 </div>
@@ -182,9 +185,17 @@
                                                 class="required">*</span>
                                         </label>
                                         <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <input type="number" maxlength="4"
-                                                   name="tahun_pembentukan"
-                                                   class="form-control col-md-7 col-xs-12" required>
+                                            <select type="number" maxlength="4"
+                                                    name="tahun_pembentukan" id="tahun_pembentukan"
+                                                    class="form-control col-md-7 col-xs-12">
+                                                <option></option>
+                                                <script>
+                                                    var tahun = 1900;
+                                                    for (i = 2021; i >= tahun; i--) {
+                                                        document.write("<option>" + i + "</option>");
+                                                    }
+                                                </script>
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -192,17 +203,26 @@
                                             Pembentukan<span class="required">*</span>
                                         </label>
                                         <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <input type="file"  name="lampiran_tahun_pembentukan"
-                                                   class="form-control col-md-7 col-xs-12" required>
+                                            <input type="file" name="lampiran_tahun_pembentukan"
+                                                   class="form-control col-md-7 col-xs-12">
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Diket Kepala
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Diketahui Kepala Daerah<span
+                                                class="required">*</span>
+                                        </label>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <input type="text" name="diket_kep_dc"
+                                                   class="form-control col-md-7 col-xs-12">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Lampiran Kepala
                                             Daerah<span class="required">*</span>
                                         </label>
                                         <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <input type="file"  name="diket_kep_dc"
-                                                   class="form-control col-md-7 col-xs-12" required>
+                                            <input type="file" name="lampiran_kep_dc"
+                                                   class="form-control col-md-7 col-xs-12">
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -210,10 +230,8 @@
                                                 class="required">*</span>
                                         </label>
                                         <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <select class="form-control" name="no_sk_bupati">
-                                                <option>Ada</option>
-                                                <option>Tidak Ada</option>
-                                            </select>
+                                            <input type="text" class="form-control col-md-7 col-xs-12"
+                                                   name="no_sk_bupati">
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -221,8 +239,8 @@
                                                 class="required">*</span>
                                         </label>
                                         <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <input type="file"  name="lampiran_sk_bupati"
-                                                   class="form-control col-md-7 col-xs-12" required>
+                                            <input type="file" name="lampiran_sk_bupati"
+                                                   class="form-control col-md-7 col-xs-12">
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -230,10 +248,8 @@
                                                 class="required">*</span>
                                         </label>
                                         <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <select class="form-control" name="akte_notaris">
-                                                <option>Ada</option>
-                                                <option>Tidak Ada</option>
-                                            </select>
+                                            <input type="text" class="form-control col-md-7 col-xs-12"
+                                                   name="akte_notaris">
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -241,8 +257,8 @@
                                             Notaris<span class="required">*</span>
                                         </label>
                                         <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <input type="file"  name="lampiran_akte_notaris"
-                                                   class="form-control col-md-7 col-xs-12" required>
+                                            <input type="file" name="lampiran_akte_notaris"
+                                                   class="form-control col-md-7 col-xs-12">
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -250,10 +266,8 @@
                                                 class="required">*</span>
                                         </label>
                                         <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <select class="form-control" name="no_pendaftaran">
-                                                <option>Ada</option>
-                                                <option>Tidak Ada</option>
-                                            </select>
+                                            <input type="text" class="form-control col-md-7 col-xs-12"
+                                                   name="no_pendaftaran">
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -261,8 +275,8 @@
                                                 class="required">*</span>
                                         </label>
                                         <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <input type="file"  name="lampiran_pendaftaran"
-                                                   class="form-control col-md-7 col-xs-12" required>
+                                            <input type="file" name="lampiran_pendaftaran"
+                                                   class="form-control col-md-7 col-xs-12">
                                         </div>
                                     </div>
                                 </div>
@@ -272,10 +286,9 @@
                                                 class="required">*</span>
                                         </label>
                                         <div class="col-md-6 col-sm-6 col-xs-12">
-                                            M:
-                                            <input type="radio" class="flat" name="gender1" value="M" name="ketua"
-                                                   required/> F:
-                                            <input type="radio" class="flat" name="gender1" value="F" name="ketua"/>
+                                            L:
+                                            <input type="radio" class="flat" value="L" name="ketua"/> P:
+                                            <input type="radio" class="flat" value="P" name="ketua"/>
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -283,11 +296,9 @@
                                                 class="required">*</span>
                                         </label>
                                         <div class="col-md-6 col-sm-6 col-xs-12">
-                                            M:
-                                            <input type="radio" class="flat" name="gender2" value="M" name="wakil"
-                                                   required/> F:
-                                            <input type="radio" class="flat" name="gender2" value="F" name="wakil"
-                                                   required/>
+                                            L:
+                                            <input type="radio" class="flat" value="L" name="wakil"/> P:
+                                            <input type="radio" class="flat" value="P" name="wakil"/>
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -295,11 +306,9 @@
                                                 class="required">*</span>
                                         </label>
                                         <div class="col-md-6 col-sm-6 col-xs-12">
-                                            M:
-                                            <input type="radio" class="flat" name="gender3" value="M" name="sekretarias"
-                                                   required/> F:
-                                            <input type="radio" class="flat" name="gender3" value="F" name="sekretaris"
-                                                   required/>
+                                            L:
+                                            <input type="radio" class="flat" value="L" name="sekretaris"/> P:
+                                            <input type="radio" class="flat" value="P" name="sekretaris"/>
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -307,11 +316,9 @@
                                                 class="required">*</span>
                                         </label>
                                         <div class="col-md-6 col-sm-6 col-xs-12">
-                                            M:
-                                            <input type="radio" class="flat" name="gender4" value="M" name="bendahara"
-                                                   required/> F:
-                                            <input type="radio" class="flat" name="gender4" value="F" name="bendahara"
-                                                   required/>
+                                            L:
+                                            <input type="radio" class="flat" value="L" name="bendahara"/> P:
+                                            <input type="radio" class="flat" value="P" name="bendahara"/>
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -319,11 +326,9 @@
                                                 class="required">*</span>
                                         </label>
                                         <div class="col-md-6 col-sm-6 col-xs-12">
-                                            M:
-                                            <input type="radio" class="flat" name="gender5" value="M" name="sek_teknik"
-                                                   required/> F:
-                                            <input type="radio" class="flat" name="gender5" value="F" name="sek_teknik"
-                                                   required/>
+                                            L:
+                                            <input type="radio" class="flat" value="L" name="sek_teknik"/> P:
+                                            <input type="radio" class="flat" value="P" name="sek_teknik"/>
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -331,11 +336,9 @@
                                                 class="required">*</span>
                                         </label>
                                         <div class="col-md-6 col-sm-6 col-xs-12">
-                                            M:
-                                            <input type="radio" class="flat" name="gender6" value="M" name="sek_op"
-                                                   required/> F:
-                                            <input type="radio" class="flat" name="gender6" value="F" name="sek_op"
-                                                   required/>
+                                            L:
+                                            <input type="radio" class="flat" value="L" name="sek_op"/> P:
+                                            <input type="radio" class="flat" value="P" name="sek_op"/>
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -343,11 +346,9 @@
                                                 class="required">*</span>
                                         </label>
                                         <div class="col-md-6 col-sm-6 col-xs-12">
-                                            M:
-                                            <input type="radio" class="flat" name="gender7" value="M" name="sek_bisnis"
-                                                   required/> F:
-                                            <input type="radio" class="flat" name="gender7" value="F" name="sek_bisnis"
-                                                   required/>
+                                            L:
+                                            <input type="radio" class="flat" value="L" name="sek_bisnis"/> P:
+                                            <input type="radio" class="flat" value="P" name="sek_bisnis"/>
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -355,8 +356,8 @@
                                                 class="required">*</span>
                                         </label>
                                         <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <input type="number"  name="jumlah_anggota"
-                                                   class="form-control col-md-7 col-xs-12" required>
+                                            <input type="text" name="jumlah_anggota"
+                                                   class="form-control col-md-7 col-xs-12">
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -364,8 +365,10 @@
                                                 class="required">*</span>
                                         </label>
                                         <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <input type="number"  name="no_ad_rt"
-                                                   class="form-control col-md-7 col-xs-12" required>
+                                            <select class="form-control" name="no_ad_art">
+                                                <option>Ada</option>
+                                                <option>Tidak Ada</option>
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -373,8 +376,8 @@
                                                 class="required">*</span>
                                         </label>
                                         <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <input type="file"  name="lampiran_ad_rt"
-                                                   class="form-control col-md-7 col-xs-12" required>
+                                            <input type="file" name="lampiran_ad_art"
+                                                   class="form-control col-md-7 col-xs-12">
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -393,8 +396,8 @@
                                             Sekretariat<span class="required">*</span>
                                         </label>
                                         <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <input type="file"  name="lamapiran_sekretariat"
-                                                   class="form-control col-md-7 col-xs-12" required>
+                                            <input type="file" name="lampiran_sekretariat"
+                                                   class="form-control col-md-7 col-xs-12">
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -402,8 +405,8 @@
                                             P3A<span class="required">*</span>
                                         </label>
                                         <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <input type="number"  name="presentase_perempuan_p3a"
-                                                   class="form-control col-md-7 col-xs-12" required>
+                                            <input type="text" name="persentase_perempuan_p3a"
+                                                   class="form-control col-md-7 col-xs-12">
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -411,8 +414,8 @@
                                                 class="required">*</span>
                                         </label>
                                         <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <input type="number"  name="areal_tersier"
-                                                   class="form-control col-md-7 col-xs-12" required>
+                                            <input type="text" name="areal_tersier"
+                                                   class="form-control col-md-7 col-xs-12">
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -420,8 +423,10 @@
                                                 class="required">*</span>
                                         </label>
                                         <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <input type="text"  name="pengisian_buku"
-                                                   class="form-control col-md-7 col-xs-12" required>
+                                            <select class="form-control" name="pengisian_buku">
+                                                <option>Ada</option>
+                                                <option>Tidak Ada</option>
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -429,8 +434,10 @@
                                                 class="required">*</span>
                                         </label>
                                         <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <input type="text"  name="iuran"
-                                                   class="form-control col-md-7 col-xs-12" required>
+                                            <select class="form-control" name="iuran">
+                                                <option>Ada</option>
+                                                <option>Tidak Ada</option>
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
@@ -440,8 +447,10 @@
                                                 class="required">*</span>
                                         </label>
                                         <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <input type="text"  name="operasi"
-                                                   class="form-control col-md-7 col-xs-12" required>
+                                            <select class="form-control" name="operasi">
+                                                <option>Ada</option>
+                                                <option>Tidak Ada</option>
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -449,8 +458,10 @@
                                                 class="required">*</span>
                                         </label>
                                         <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <input type="text"  name="partisipatif"
-                                                   class="form-control col-md-7 col-xs-12" required>
+                                            <select class="form-control" name="partisipatif">
+                                                <option>Ada</option>
+                                                <option>Tidak Ada</option>
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
@@ -460,8 +471,10 @@
                                                 class="required">*</span>
                                         </label>
                                         <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <input type="text"  name="pola_tanam"
-                                                   class="form-control col-md-7 col-xs-12" required>
+                                            <select class="form-control" name="pola_tanam">
+                                                <option>Ada</option>
+                                                <option>Tidak Ada</option>
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -469,15 +482,16 @@
                                                 class="required">*</span>
                                         </label>
                                         <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <input type="text"  name="usaha_tani"
-                                                   class="form-control col-md-7 col-xs-12" required>
+                                            <select class="form-control" name="usaha_tani">
+                                                <option>Ada</option>
+                                                <option>Tidak Ada</option>
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
-                            </form>
+                            </div>
                         </div>
-                        <!-- End SmartWizard Content -->
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -488,7 +502,7 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
-        $('#kec,#prov,#kab').select2({
+        $('#kec,#prov,#kab,#tahun_pembentukan').select2({
             placeholder: "Select a value",
         })
     });
@@ -502,6 +516,7 @@
             var myselect = $('<select>');
             myselect.append($('<option></option>').val(x).html(y));
             $('#prov').append(myselect.html());
+            $('#id_prov_fk').val(x)
         }
 
     })
@@ -540,25 +555,17 @@
                     $('#kec').select2({
                         data: pip
                     })
+
                 })
+                $('#id_kab_fk').val(id)
 
             }
         })
     }
 
-    function Finish() {
-        //Store Data P3
-        $.ajax({
-            url : "/admin/v1/p3/store",
-            data : $('#form').serialize(),
-            type: 'POST',
-            success:function (res){
-                alert("SUKSES INSERT DATA")
-            },
-            error: function (error){
-                alert(error)
-            }
-        })
+    function GetVal(id) {
+        id = document.getElementById('kec').value;
+        $('#id_kec_fk').val(id)
     }
 </script>
 {{end}}

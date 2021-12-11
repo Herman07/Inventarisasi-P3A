@@ -1,8 +1,21 @@
 <!-- sidebar menu -->
+
 <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
     <div class="menu_section">
         <h3>General</h3>
+        {{with session .ctx}}
         <ul class="nav side-menu">
+            {{if eq .TypeUser "2"}}
+            <li><a href="/admin/v1/inventaris"><i class="fa fa-home"></i> Inventaris P3A</span></a></li>
+            <li style="display:none;"><a><i class="fa fa-edit"></i> Master Data <span class="fa fa-chevron-down"></span></a>
+                <ul class="nav child_menu">
+                    <li><a href="/admin/v1/master-data/provinsi">Provinsi</a></li>
+                    <li><a href="/admin/v1/master-data/kab">Kabupaten</a></li>
+                    <li><a href="/admin/v1/master-data/kec">Kecamatan</a></li>
+                </ul>
+            </li>
+            <li style="display:none;"><a href="/admin/v1/user"><i class="fa fa-user"></i>Users</span></a></li>
+            {{else}}
             <li><a href="/admin/v1/inventaris"><i class="fa fa-home"></i> Inventaris P3A</span></a></li>
             <li><a><i class="fa fa-edit"></i> Master Data <span class="fa fa-chevron-down"></span></a>
                 <ul class="nav child_menu">
@@ -11,8 +24,11 @@
                     <li><a href="/admin/v1/master-data/kec">Kecamatan</a></li>
                 </ul>
             </li>
-
+            <li><a href="/admin/v1/user"><i class="fa fa-user"></i>Users</span></a></li>
+            {{end}}
         </ul>
+        {{end}}
     </div>
 </div>
+
 <!-- /sidebar menu -->

@@ -10,10 +10,10 @@ const SessionId = "id"
 var Manager *ConfigSession
 
 type UserInfo struct {
-	Username string `json:"username" form:"username"`
+	Username string `json:"user_name" form:"user_name"`
 	TypeUser string `json:"type_users" form:"type_users"`
 	ID       string `json:"id_usergroup" form:"id_usergroup"`
-	Password string `json:"password" form:"password"`
+	Foto     string `json:"foto" form:"foto"`
 }
 
 type FlashMessage struct {
@@ -53,7 +53,6 @@ func (s *ConfigSession) Get(c echo.Context, name string) (interface{}, error) {
 func (s *ConfigSession) Set(c echo.Context, name string, value interface{}) error {
 	session, _ := s.store.Get(c.Request(), name)
 	session.Values[s.valueKey] = value
-
 
 	err := session.Save(c.Request(), c.Response())
 	return err

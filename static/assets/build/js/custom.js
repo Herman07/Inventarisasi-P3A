@@ -944,15 +944,15 @@ if (typeof NProgress != 'undefined') {
 			if( typeof (parsley) === 'undefined'){ return; }
 			console.log('init_parsley');
 			
-			$/*.listen*/('parsley:field:validate', function() {
+			$/*.listen*/('parsley:field:te', function() {
 			  validateFront();
 			});
-			$('#demo-form .btn').on('click', function() {
-			  $('#demo-form').parsley().validate();
+			$('#form .btn').on('click', function() {
+			  $('#form').parsley().validate();
 			  validateFront();
 			});
 			var validateFront = function() {
-			  if (true === $('#demo-form').parsley().isValid()) {
+			  if (true === $('#form').parsley().isValid()) {
 				$('.bs-callout-info').removeClass('hidden');
 				$('.bs-callout-warning').addClass('hidden');
 			  } else {
@@ -965,11 +965,11 @@ if (typeof NProgress != 'undefined') {
 			  validateFront();
 			});
 			$('#demo-form2 .btn').on('click', function() {
-			  $('#demo-form2').parsley().validate();
+			  $('#form').parsley().validate();
 			  validateFront();
 			});
 			var validateFront = function() {
-			  if (true === $('#demo-form2').parsley().isValid()) {
+			  if (true === $('#form').parsley().isValid()) {
 				$('.bs-callout-info').removeClass('hidden');
 				$('.bs-callout-warning').addClass('hidden');
 			  } else {
@@ -1793,7 +1793,7 @@ if (typeof NProgress != 'undefined') {
       validator.message.date = 'not a real date';
 
       // validate a field on "blur" event, a 'select' on 'change' event & a '.reuired' classed multifield on 'keyup':
-      $('form')
+      $('#form')
         .on('blur', 'input[required], input.optional, select.required', validator.checkField)
         .on('change', 'select.required', validator.checkField)
         .on('keypress', 'input[required][pattern]', validator.keypress);
@@ -1802,7 +1802,7 @@ if (typeof NProgress != 'undefined') {
         validator.checkField.apply($(this).siblings().last()[0]);
       });
 
-      $('form').submit(function(e) {
+      $('#form').submit(function(e) {
         e.preventDefault();
         var submit = true;
 

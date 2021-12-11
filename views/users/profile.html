@@ -1,0 +1,65 @@
+{{define "content"}}
+<!-- page content -->
+<div class="right_col" role="main">
+    <div class="">
+        <div class="clearfix"></div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Profile</h2>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        {{if eq .data.Foto ""}}
+                        <div class="col-md-3 col-sm-3 col-xs-12 profile_left">
+                            <div class="profile_img">
+                                <div id="crop-avatar">
+                                    <img class="img-responsive avatar-view" style="border-radius: 100%; width: 200px;height: 200px" src="/style/build/images/user-background.png" alt="Avatar" title="Change the avatar">
+                                </div>
+                            </div>
+                        </div>
+                        {{else}}
+                        <div class="col-md-3 col-sm-3 col-xs-12 profile_left">
+                            <div class="profile_img">
+                                <div id="crop-avatar">
+                                    <img class="img-responsive avatar-view" style="border-radius: 100%; width: 200px;height: 200px" src="/static/image/{{.data.Foto}}" alt="Avatar" title="Change the avatar">
+                                </div>
+                            </div>
+                        </div>
+                        {{end}}
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                            <div class="form-group">
+                                <label>Nama</label>
+                                <p class="form-control">{{.data.Nama}}</p>
+                            </div>
+                            <div class="form-group">
+                                <label>Email</label>
+                                <p class="form-control">{{.data.Email}}</p>
+                            </div>
+                            <div class="form-group">
+                                <label>Alamat</label>
+                                <p class="form-control">{{.data.Alamat}}</p>
+                            </div>
+                            <div class="form-group">
+                                <label>Jenis Kelamin</label>
+                                <p class="form-control">{{.data.JenisKelamin}}</p>
+                            </div>
+                            <div class="form-group">
+                                <label>Tanggal Lahir<span class="">*</span></label>
+                                <p class="form-control">{{.data.TglLahir}}</p>
+                            </div>
+                            <div class="form-group">
+                                <label>No Telepon</label>
+                                <p class="form-control">{{.data.NoTlp}}</p>
+                            </div>
+                        </div>
+                        <a href="/admin/v1/user/profile/update/{{.data.ID}}" style="float: right;" class="btn btn-success"><i class="fa fa-edit m-right-xs"></i>Edit Profile</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /page content -->
+{{end}}

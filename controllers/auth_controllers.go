@@ -1,12 +1,12 @@
 package controllers
 
 import (
+	"Inventarisasi-P3A/request"
+	"Inventarisasi-P3A/services"
+	"Inventarisasi-P3A/utils/session"
 	"github.com/foolin/goview/supports/echoview-v4"
 	"github.com/labstack/echo/v4"
 	"net/http"
-	"skeleton-echo/request"
-	"skeleton-echo/services"
-	"skeleton-echo/utils/session"
 )
 
 type FrontAuthController struct {
@@ -48,8 +48,9 @@ func (c *FrontAuthController) Login(ctx echo.Context) error {
 	}
 	userInfo := session.UserInfo{
 		ID:       data.ID,
-		Username: data.Username,
 		TypeUser: data.TypeUser,
+		Username: data.Username,
+		Foto : data.Foto,
 	}
 	if err := session.Manager.Set(ctx, session.SessionId, &userInfo)
 	err != nil {

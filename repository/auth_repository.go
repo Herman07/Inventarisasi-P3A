@@ -2,8 +2,8 @@ package repository
 
 import (
 	"gorm.io/gorm"
-	"skeleton-echo/models"
-	"skeleton-echo/request"
+	"Inventarisasi-P3A/models"
+	"Inventarisasi-P3A/request"
 )
 
 type AuthRepository interface {

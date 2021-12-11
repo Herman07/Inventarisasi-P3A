@@ -2,7 +2,7 @@ package repository
 
 import (
 	"gorm.io/gorm"
-	"skeleton-echo/models"
+	"Inventarisasi-P3A/models"
 )
 
 type KabDataRepository interface {

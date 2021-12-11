@@ -23,7 +23,7 @@ function SmartWizard(target, options) {
     this.buttons = {
         next : $('<button>'+options.labelNext+'</button>').attr("type","button").addClass("buttonNext"),
         previous : $('<button>'+options.labelPrevious+'</button>').attr("type","button").addClass("buttonPrevious"),
-        finish  : $('<button>'+options.labelFinish+'</button>').attr("type","button").attr("onclick","Finish()").addClass("buttonFinish")
+        finish  : $('<button>'+options.labelFinish+'</button>').attr("type","submit").addClass("buttonFinish")
     };
 
     /*
@@ -59,19 +59,7 @@ function SmartWizard(target, options) {
         this.contentWidth = $this.elmStepContainer.width();
 
         $($this.buttons.next).click(function() {
-            // var curStep = $(this).closest(".x_content"),
-            //     curInputs = curStep.find("input[type='text'],input[type='url'],input[type='file'],input[type='number'],select"),
-            //     isValid = true;
-            // $(".form-group").removeClass("has-error");
-            // for(var i=0; i<curInputs.length; i++){
-            //     if (!curInputs[i].validity.valid){
-            //         isValid = false;
-            //         $(curInputs[i]).closest(".form-group").addClass("has-error");
-            //         $(this).hasClass('buttonDisabled')
-            //     }
             $this.goForward();
-
-            // }
             return false;
 
         });
@@ -197,7 +185,7 @@ function SmartWizard(target, options) {
                 }
             }
         }
-        $this.elmStepContainer.height(_step($this, selStep).outerHeight());
+        $this.elmStepContainer.height(_step($this, selStep));
         var prevCurStepIdx = $this.curStepIdx;
         $this.curStepIdx =  stepIdx;
         if ($this.options.transitionEffect == 'slide'){

@@ -15,19 +15,219 @@
 <!-- Datatables -->
 <script src="/style/vendors/datatables.net/js/jquery.dataTables.min.js"></script>
 <script src="/style/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
-<script src="/style/vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-<script src="/style/vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
-<script src="/style/vendors/datatables.net-buttons/js/buttons.flash.min.js"></script>
-<script src="/style/vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>
-<script src="/style/vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
-<script src="/style/vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
-<script src="/style/vendors/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
-<script src="/style/vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
-<script src="/style/vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
-<script src="/style/vendors/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
 <script src="/style/vendors/jszip/dist/jszip.min.js"></script>
 <script src="/style/vendors/pdfmake/build/pdfmake.min.js"></script>
 <script src="/style/vendors/pdfmake/build/vfs_fonts.js"></script>
 <script src="/style/vendors/select2/dist/js/select2.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script type="text/javascript">
+    function Hapus(id) {
+        data = new FormData();
+        swal({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            buttons: ['Cancel', true]
+        }).then(function (isConfirm) {
+            if (isConfirm) {
+                $.ajax({
+                    url: '/kab/' + id + '/delete',
+                    type: 'DELETE',
+                    data: data,
+                    processData: false,
+                    contentType: false,
+                    success: function (res) {
+                        swal(
+                            'Deleted!',
+                            'User has been deleted.',
+                            'success'
+                        );
+                        $('#kabupaten').DataTable().ajax.reload();
+                    },
+                    error: function (res) {
+                        swal({
+                            type: 'warning',
+                            title: 'Oops...',
+                            text: 'Something went wrong!',
+                        })
+                    }
+                })
+            }
+        });
+    }
 
+    function Deletede(id) {
+        console.log(id)
+        data = new FormData();
+        swal({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            buttons: ['Cancel', true],
+        }).then(function (isConfirm) {
+            if (isConfirm) {
+                $.ajax({
+                    url: '/kec/' + id + '/delete',
+                    type: 'DELETE',
+                    data: data,
+                    processData: false,
+                    contentType: false,
+                    success: function (res) {
+                        swal(
+                            'Deleted!',
+                            'User has been deleted.',
+                            'success'
+                        );
+                        $('#kecamatan').DataTable().ajax.reload();
+                    },
+                    error: function (res) {
+                        swal({
+                            type: 'warning',
+                            title: 'Oops...',
+                            text: 'Something went wrong!',
+                        })
+                    }
+                })
+            }
+        });
+    }
 
+    function Deleted(id) {
+        data = new FormData();
+        console.log(id)
+        swal({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            buttons: ['Cancel', true],
+        }).then(function (isConfirm) {
+            if (isConfirm) {
+                $.ajax({
+                    url: '/prov/' + id + '/delete',
+                    type: 'DELETE',
+                    data: data,
+                    processData: false,
+                    contentType: false,
+                    success: function (res) {
+                        swal(
+                            'Deleted!',
+                            'User has been deleted.',
+                            'success'
+                        );
+                        $('#provinsi').DataTable().ajax.reload();
+                    },
+                    error: function (res) {
+                        swal({
+                            type: 'warning',
+                            title: 'Oops...',
+                            text: 'Something went wrong!',
+                        })
+                    }
+                })
+            }
+        });
+    }
+
+    function Delete(id) {
+        data = new FormData();
+        console.log(id)
+        swal({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            buttons: ['Cancel', true],
+        }).then(function (isConfirm) {
+            if (isConfirm) {
+                $.ajax({
+                    url: '/admin/v1/inventaris/delete/' + id,
+                    type: 'DELETE',
+                    data: data,
+                    processData: false,
+                    contentType: false,
+                    success: function (res) {
+                        swal(
+                            'Deleted!',
+                            'User has been deleted.',
+                            'success'
+                        );
+                        $('#datatables').DataTable().ajax.reload();
+                    },
+                    error: function (res) {
+                        swal({
+                            type: 'warning',
+                            title: 'Oops...',
+                            text: 'Something went wrong!',
+                        })
+                    }
+                })
+            }
+        });
+    }
+    function DeleteUser(id) {
+        data = new FormData();
+        console.log(id)
+        swal({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            buttons: ['Cancel', true],
+        }).then(function (isConfirm) {
+            if (isConfirm) {
+                $.ajax({
+                    url: '/admin/v1/user/delete/' + id,
+                    type: 'DELETE',
+                    data: data,
+                    processData: false,
+                    contentType: false,
+                    success: function (res) {
+                        swal(
+                            'Deleted!',
+                            'User has been deleted.',
+                            'success'
+                        );
+                        $('#user').DataTable().ajax.reload();
+                    },
+                    error: function (res) {
+                        swal({
+                            type: 'warning',
+                            title: 'Oops...',
+                            text: 'Something went wrong!',
+                        })
+                    }
+                })
+            }
+        });
+    }
+
+    function Logout() {
+        swal({
+            title: 'Are you sure?',
+            icon: 'warning',
+            buttons: ['Cancel', true],
+        }).then(function (isConfirm) {
+            if (isConfirm) {
+                $.ajax({
+                    url: '/logout',
+                    type: 'POST',
+                    success: function (res) {
+                        window.location.href = "/login";
+                    },
+                    error: function (res) {
+                        swal({
+                            type: 'warning',
+                            title: 'Oops...',
+                            text: 'Something went wrong!',
+                        })
+                    }
+                })
+            }
+        });
+    }
+    $("#form").submit(function (event) {
+        swal({
+            title: 'Create Success',
+            icon: 'success',
+        })
+        event.preventDefault();
+    });
+</script>

@@ -4,9 +4,9 @@ import (
 	"fmt"
 	"github.com/labstack/echo/v4"
 	"net/http"
-	"skeleton-echo/models"
-	"skeleton-echo/request"
-	"skeleton-echo/services"
+	"Inventarisasi-P3A/models"
+	"Inventarisasi-P3A/request"
+	"Inventarisasi-P3A/services"
 	"strconv"
 )
 
@@ -77,8 +77,8 @@ func (c *KecDataController) GetDetail(ctx echo.Context) error {
 	var action string
 	listOfData := make([]map[string]interface{}, len(data))
 	for k, v := range data {
-		action = `<a data-toggle="modal" data-target="#modal-update" class="btn btn-success btn-bold btn-upper" style="text-decoration: none;font-weight: 100;color: white;/* width: 80px; */"><i class="fas fa-edit"></i></a>
-		<a href="javascript:;" onclick="Delete('` + v.ID + `')" class="btn btn-danger btn-bold btn-upper" title="Delete" style="text-decoration: none;font-weight: 100;color: white;/* width: 80px; */"><i class="fas fa-trash"></i></a>`
+		action = `<a href="/admin/v1/master-data/kec/update/` + (v.ID) + `" class="btn btn-success" style="text-decoration: none;font-weight: 100;color: white;/* width: 80px; */"><i class="fa fa-edit"></i></a>
+		<a onclick="Deletede('` + v.ID + `')" class="btn btn-danger" title="Delete" style="text-decoration: none;font-weight: 100;color: white;/* width: 80px; */"><i class="fa fa-trash"></i></a>`
 		//time := v.CreatedAt
 		//createdAt = time.Format("2006-01-02")
 		listOfData[k] = map[string]interface{}{
@@ -98,21 +98,23 @@ func (c *KecDataController) GetDetail(ctx echo.Context) error {
 
 func (c *KecDataController) AddData(ctx echo.Context) error {
 	var entity request.KecReq
-
+	fmt.Println("Data masuk Kecematan Sebelum Binding : ",entity)
 	if err := ctx.Bind(&entity); err != nil {
 		return ctx.JSON(400, echo.Map{"message": "error binding data"})
 	}
+	fmt.Println("Data masuk Kecematan : ",entity)
 	_, err := c.service.Create(entity)
+
 	//entity.CreatedAt = time.Now()
 	if err != nil {
 		return c.InternalServerError(ctx, err)
 	}
-	return ctx.Redirect(302, "/inventaris/v1/master-data/kec")
+	return ctx.Redirect(302, "/admin/v1/master-data/kec")
 }
 
 func (c *KecDataController) DoUpdate(ctx echo.Context) error {
 	var entity request.KecReq
-	id := ctx.Param("id_kec")
+	id := ctx.Param("id")
 	if err := ctx.Bind(&entity); err != nil {
 		return ctx.JSON(400, echo.Map{"message": "error binding data"})
 	}
@@ -121,11 +123,12 @@ func (c *KecDataController) DoUpdate(ctx echo.Context) error {
 		return c.InternalServerError(ctx, err)
 	}
 	fmt.Println(data)
-	return ctx.Redirect(302, "/inventaris/v1/master-data/kec")
+	return ctx.Redirect(302, "/admin/v1/master-data/kec")
 }
 
 func (c *KecDataController) Delete(ctx echo.Context) error {
-	id := ctx.Param("id_kec")
+	id := ctx.Param("id")
+	fmt.Println("ID DELETE : ",id)
 
 	err := c.service.Delete(id)
 	if err != nil {

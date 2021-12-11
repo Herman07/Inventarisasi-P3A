@@ -9,11 +9,11 @@ import (
 	"log"
 	"net/http"
 	"os"
-	"skeleton-echo/config"
-	middlewareFunc "skeleton-echo/middleware"
-	"skeleton-echo/models"
-	"skeleton-echo/routes"
-	"skeleton-echo/utils/session"
+	"Inventarisasi-P3A/config"
+	middlewareFunc "Inventarisasi-P3A/middleware"
+	"Inventarisasi-P3A/models"
+	"Inventarisasi-P3A/routes"
+	"Inventarisasi-P3A/utils/session"
 )
 
 func main() {
@@ -39,6 +39,7 @@ func main() {
 	e.Static("/style", "static/assets")
 	// Load static auth
 	e.Static("/login/template", "static/auth")
+	e.Static("/static/image", "static/image")
 
 	//DB Connected
 	db := config.Landscape()

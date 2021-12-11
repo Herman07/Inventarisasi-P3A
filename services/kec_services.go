@@ -1,9 +1,9 @@
 package services
 
 import (
-	"skeleton-echo/models"
-	"skeleton-echo/repository"
-	"skeleton-echo/request"
+	"Inventarisasi-P3A/models"
+	"Inventarisasi-P3A/repository"
+	"Inventarisasi-P3A/request"
 	"strings"
 )
 
@@ -48,6 +48,7 @@ func (s *KecDataService) QueryDatatable(searchValue string,orderType string, ord
 func (s *KecDataService) Create(request request.KecReq) (*models.MasterDataKec, error) {
 	entity := models.MasterDataKec{
 		Kecamatan:  request.Nama,
+		IDKab: request.IDKab,
 		ID: request.ID,
 	}
 	data, err := s.KecDataRepository.Create(entity)

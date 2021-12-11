@@ -3,7 +3,7 @@ package middleware
 import (
 	"github.com/gorilla/sessions"
 	"github.com/labstack/echo/v4"
-	"skeleton-echo/utils/session"
+	"Inventarisasi-P3A/utils/session"
 )
 
 func NewCookieStore() *sessions.CookieStore {

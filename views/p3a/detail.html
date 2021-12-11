@@ -1,0 +1,452 @@
+{{define "content"}}
+<div class="right_col" role="main">
+    <div class="">
+        <div class="clearfix"></div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Data P3A</h2>
+                        <ul class="nav navbar-right panel_toolbox">
+                            <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
+                        </ul>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <br/>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Provinsi<span class="">*</span></label>
+                                <p class="form-control">{{.data.NamaProv}}</p>
+                            </div>
+                            <div class="form-group">
+                                <label>Kabupaten<span class="">*</span></label>
+                                <p class="form-control">{{.data.NamaKab}}</p>
+                            </div>
+                            <div class="form-group">
+                                <label>Kecamatan</label><span class="">*</span>
+                                <p class="form-control">{{.data.NamaKec}}</p>
+                            </div>
+                            <div class="form-group">
+                                <label>No Urut <span class="">*</span>
+                                </label>
+                                <p type="text" class="form-control">{{.data.NoUrut}}</p>
+                            </div>
+                            <div class="form-group">
+                                <label>Nama P3A<span class="">*</span></label>
+                                <p type="text" class="form-control">{{.data.NamaP3A}}</p>
+                            </div>
+                            <div class="form-group">
+                                <label>Nama Daerah Irigasi<span class="">*</span></label>
+                                <p type="text" class="form-control">{{.data.DaerahIrigasi}}</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Luas Wilayah<span class="">*</span></label>
+                                <p type="text" class="form-control">{{.data.LuasWilayah}}</p>
+                            </div>
+                            <div class="form-group">
+                                <label>Jumlah P3A<span class="">*</span></label>
+                                <p class="form-control">{{.data.JumlahP3A}}</p>
+                            </div>
+                            <div class="form-group">
+                                <label>Luas Layanan P3A<span class="">*</span></label>
+                                <p class="form-control">{{.data.LuasLayananP3A}}</p>
+                            </div>
+                            <div class="form-group">
+                                <label>Keterangan<span class="">*</span></label>
+                                <p class="form-control" style="height: 100px">{{.data.Keterangan}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Status Ilegal P3A</small></h2>
+                        <ul class="nav navbar-right panel_toolbox">
+                            <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                            </li>
+                        </ul>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Tahun Pembentukan<span class="">*</span></label>
+                                <p class="form-control">{{.data.TahunPembentukan}}</p>
+                            </div>
+                            <div class="form-group">
+                                <label>Diket Kepala Daerah<span class="">*</span></label>
+                                <p class="form-control">{{.data.DiketKplDaerah}}</p>
+                            </div>
+                            <div class="form-group">
+                                <label>Nomor SK Bupati<span class="">*</span></label>
+                                <p class="form-control">{{.data.SKBupati}}</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Akte Notaris<span class="">*</span></label>
+                                <p class="form-control">{{.data.AkteNotaris}}</p>
+                            </div>
+                            <div class="form-group">
+                                <label>Nomor Pendaftaran<span class="">*</span></label>
+                                <p class="form-control">{{.data.NoPendaftaran}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Kepengurusan</h2>
+                        <ul class="nav navbar-right panel_toolbox">
+                            <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                            </li>
+                        </ul>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <div class="col-md-6">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Ketua<span class="">*</span></label>
+                                        <br>
+                                        {{if eq .data.Ketua "L"}}
+                                        L:
+                                        <input type="radio" class="flat" checked disabled/>
+                                        P:
+                                        <input type="radio" class="flat" disabled/>
+                                        {{else}}
+                                        L:
+                                        <input type="radio" class="flat" disabled/>
+                                        P:
+                                        <input type="radio" class="flat" checked disabled/>
+                                        {{end}}
+                                    </div>
+                                    <br>
+                                    <div class="form-group">
+                                        <label>Wakil<span class="">*</span></label>
+                                        <br>
+                                        {{if eq .data.Wakil "L"}}
+                                        L:
+                                        <input type="radio" class="flat" checked disabled/>
+                                        P:
+                                        <input type="radio" class="flat" disabled/>
+                                        {{else}}
+                                        L:
+                                        <input type="radio" class="flat" disabled/>
+                                        P:
+                                        <input type="radio" class="flat" checked disabled/>
+                                        {{end}}
+                                    </div>
+                                    <br>
+                                    <div class="form-group">
+                                        <label>Sekretaris<span class="">*</span></label>
+                                        <br>
+                                        {{if eq .data.Sekretaris "L"}}
+                                        L:
+                                        <input type="radio" class="flat" checked disabled/>
+                                        P:
+                                        <input type="radio" class="flat" disabled/>
+                                        {{else}}
+                                        <input type="radio" class="flat" disabled/>
+                                        P:
+                                        <input type="radio" class="flat" checked disabled/>
+                                        {{end}}
+                                    </div>
+                                    <br>
+                                    <div class="form-group">
+                                        <label>Bendahara<span class="">*</span></label>
+                                        <br>
+                                        {{if eq .data.Bendahara "L"}}
+                                        L:
+                                        <input type="radio" class="flat" checked disabled/>
+                                        P:
+                                        <input type="radio" class="flat" disabled/>
+                                        {{else}}
+                                        L:
+                                        <input type="radio" class="flat" disabled/>
+                                        P:
+                                        <input type="radio" class="flat" checked disabled/>
+                                        {{end}}
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Seksi Teknik<span class="">*</span></label>
+                                        <br>
+                                        {{if eq .data.SekTeknik "L"}}
+                                        L:
+                                        <input type="radio" class="flat" checked disabled/>
+                                        P:
+                                        <input type="radio" class="flat" disabled/>
+                                        {{else}}
+                                        L:
+                                        <input type="radio" class="flat" disabled/>
+                                        P:
+                                        <input type="radio" class="flat" checked disabled/>
+                                        {{end}}
+                                    </div>
+                                    <br>
+                                    <div class="form-group">
+                                        <label>Seksi Operasi<span class="">*</span></label>
+                                        <br>
+                                        {{if eq .data.SekOP "L"}}
+                                        L:
+                                        <input type="radio" class="flat" checked disabled/>
+                                        P:
+                                        <input type="radio" class="flat" disabled/>
+                                        {{else}}
+                                        L:
+                                        <input type="radio" class="flat" disabled/>
+                                        P:
+                                        <input type="radio" class="flat" checked disabled/>
+                                        {{end}}
+                                    </div>
+                                    <br>
+                                    <div class="form-group">
+                                        <label>Seksi Binis<span class="">*</span></label>
+                                        <br>
+                                        {{if eq .data.SekBisnis "L"}}
+                                        L:
+                                        <input type="radio" class="flat" checked disabled/>
+                                        P:
+                                        <input type="radio" class="flat" disabled/>
+                                        {{else}}
+                                        L:
+                                        <input type="radio" class="flat" disabled/>
+                                        P:
+                                        <input type="radio" class="flat" checked disabled/>
+                                        {{end}}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Jumlah Anggota<span class="">*</span></label>
+                                <p class="form-control">{{.data.JumlahAnggota}}</p>
+                            </div>
+                            <div class="form-group">
+                                <label>No ADRT<span class="">*</span></label>
+                                <p class="form-control">{{.data.NoADRT}}</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Sekretariat<span class="">*</span></label>
+                                <p class="form-control">{{.data.Sekretariat}}</p>
+                            </div>
+                            <div class="form-group">
+                                <label>Presentase Perempuan P3A<span class="">*</span></label>
+                                <p class="form-control">{{.data.PresentasiPerempuanP3A}}</p>
+                            </div>
+                            <div class="form-group">
+                                <label>Areal Tersier<span class="">*</span></label>
+                                <p class="form-control">{{.data.ArealTersier}}</p>
+                            </div>
+                            <div class="form-group">
+                                <label>Pengisian Buku<span class="">*</span></label>
+                                <p class="form-control">{{.data.PengisianBuku}}</p>
+                            </div>
+                            <div class="form-group">
+                                <label>Iuran<span class="">*</span></label>
+                                <p class="form-control">{{.data.Iuran}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Data Teknik</h2>
+                        <ul class="nav navbar-right panel_toolbox">
+                            <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                            </li>
+                        </ul>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Operasi<span class="">*</span></label>
+                                <p class="form-control">{{.data.Operasi}}</p>
+                            </div>
+                            <div class="form-group">
+                                <label>Partisipatif<span class="">*</span></label>
+                                <p class="form-control">{{.data.Partisipatif}}</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Pola Tanam<span class="">*</span></label>
+                                <p class="form-control">{{.data.PolaTanam}}</p>
+                            </div>
+                            <div class="form-group">
+                                <label>Usaha Tani<span class="">*</span></label>
+                                <p class="form-control">{{.data.UsahaTani}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Data Lampiran</h2>
+                        <ul class="nav navbar-right panel_toolbox">
+                            <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                            </li>
+                        </ul>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Lampiran Tahun Pembentukan</label>
+                                <div class="image view view-first">
+                                    <img style="width: 100%; display: block" id="img1"
+                                         src="/static/image/{{.data.LamTahunPembentukan}}">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Lampiran Kepala Daerah</label>
+                                <div class="image view view-first">
+                                    <img style="width: 100%; display: block" id="img2"
+                                         src="/static/image/{{.data.LamKplDesa}}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Lampiran SK Bupati</label>
+                                <div class="image view view-first">
+                                    <img style="width: 100%; display: block" id="img3"
+                                         src="/static/image/{{.data.LamSKBupati}}">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Lampiran Akte Notaris</label>
+                                <div class="image view view-first">
+                                    <img style="width: 100%; display: block" id="img4"
+                                         src="/static/image/{{.data.LamAkteNotaris}}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Lampiran Pendaftaran</label>
+                                <div class="image view view-first">
+                                    <img style="width: 100%; display: block" id="img5"
+                                         src="/static/image/{{.data.LamPendaftaran}}">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Lampiran ADART</label>
+                                <div class="image view view-first">
+                                    <img style="width: 100%; display: block" id="img6"
+                                         src="/static/image/{{.data.LampiranADRT}}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Lampiran Seketariat</label>
+                                <div class="image view view-first">
+                                    <img style="width: 100%; display: block" id="img7"
+                                         src="/static/image/{{.data.LampiranSekretariat}}">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="form-group">
+                        <div class="col-md-12 text-right">
+                            <a href="/admin/v1/inventaris" class="btn btn-primary" type="button">Kembali</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true" id="modal">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">Preview Img</h4>
+            </div>
+            <div class="modal-body">
+                <img src="" id="content" style="width: 800px; height:auto;">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <a href="" id="download" type="button" onclick="Download()" class="btn btn-primary" download >Download</a>
+            </div>
+
+        </div>
+    </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+<script>
+    var img1 = document.getElementById("img1");
+    var img2 = document.getElementById("img2");
+    var img3 = document.getElementById("img3");
+    var img4 = document.getElementById("img4");
+    var img5 = document.getElementById("img5");
+    var img6 = document.getElementById("img6");
+    var img7 = document.getElementById("img7");
+    img1.onclick = function(){
+        $('#content').attr('src', $('#img1').attr('src'));
+        $('#modal').modal('show');
+    }
+    img2.onclick = function(){
+        $('#content').attr('src', $('#img2').attr('src'));
+        $('#modal').modal('show');
+    }
+    img3.onclick = function(){
+        $('#content').attr('src', $('#img3').attr('src'));
+        $('#modal').modal('show');
+    }
+    img4.onclick = function(){
+        $('#content').attr('src', $('#img4').attr('src'));
+        $('#modal').modal('show');
+    }
+    img5.onclick = function(){
+        $('#content').attr('src', $('#img5').attr('src'));
+        $('#modal').modal('show');
+    }
+    img6.onclick = function(){
+        $('#content').attr('src', $('#img6').attr('src'));
+        $('#modal').modal('show');
+    }
+    img7.onclick = function(){
+        $('#content').attr('src', $('#img7').attr('src'));
+        $('#modal').modal('show');
+    }
+    function Download(){
+        $('#download').attr('href', $('#content').attr('src'));
+    }
+</script>
+{{end}}
